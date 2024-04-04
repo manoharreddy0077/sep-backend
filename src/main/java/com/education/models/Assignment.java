@@ -5,23 +5,26 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class Assignment {
     private String assignmentId;
-    public String title;
-    public String description;
-    public Date dueDate;
+    private String title;
+    private String description;
+    private Date dueDate;
     private Grade grade;
-    
-    public  Assignment(String assignmentId,String title,String description,Date dueDate){
-        this.assignmentId=assignmentId;
-        this.title=title;
-        this.description=description;
-        this.dueDate=dueDate;
+
+    public Assignment(String assignmentId, String title, String description, Date dueDate) {
+        this.assignmentId = assignmentId;
+        this.title = title;
+        this.description = description;
+        this.dueDate = dueDate;
     }
-    public String getAssignmentId(){
+
+    public String getAssignmentId() {
         return assignmentId;
     }
-    public void  setAssignmentId(String assignmentId){
-        this.assignmentId=assignmentId;
+
+    public void setAssignmentId(String assignmentId) {
+        this.assignmentId = assignmentId;
     }
+
     public String getTitle() {
         return title;
     }
@@ -46,7 +49,6 @@ public class Assignment {
         this.dueDate = dueDate;
     }
 
-
     public Grade getGrade() {
         return grade;
     }
@@ -55,13 +57,12 @@ public class Assignment {
         this.grade = grade;
     }
 
-    public void submitAssignment(String  username,MultipartFile assignmentFile){
-        //  changed String solution to multipartFIle solution as user submitted assignment wil be pdf file 
-        // 
+    public void submitAssignment(String username, MultipartFile assignmentFile) {
+        // Logic to submit assignment
     }
-    public Assignment viewAssignment(){
-        // login to view the assignment
-        // placeholder return value;
-        return this;
+
+    public Assignment viewAssignment() {
+        // Logic to view assignment
+        return this; // Placeholder implementation
     }
 }

@@ -1,7 +1,5 @@
 package com.education.models;
 
-import java.util.List;
-
 public class Feedback {
     private String message;
 
@@ -17,12 +15,16 @@ public class Feedback {
         this.message = message;
     }
 
-    public void sendFeedback(User user, String message) {
-        // Logic to send feedback to the user
+    public void sendFeedback(Profile profile) {
+        // Logic to send feedback to the profile
+        profile.addFeedback(this);
     }
 
-    public List<Feedback> viewPastFeedbacks(User user) {
-        // Logic to retrieve and return a list of past feedbacks for the user
-        return null;
+    public static void viewPastFeedbacks(Profile profile) {
+        // Logic to retrieve and view past feedbacks for the profile
+        System.out.println("Past Feedbacks for " + profile.getName() + ":");
+        for (Feedback feedback : profile.getPastFeedbacks()) {
+            System.out.println("- " + feedback.getMessage());
+        }
     }
 }

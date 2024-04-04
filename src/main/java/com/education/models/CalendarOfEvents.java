@@ -1,32 +1,5 @@
 package com.education.models;
 
-// import java.util.ArrayList;
-// import java.util.List;
-
-// public class Calendar {
-//     private List<Event> events;
-
-//     public Calendar() {
-//         this.events = new ArrayList<>();
-//     }
-
-//     public List<Event> getEvents() {
-//         return events;
-//     }
-
-//     public void setEvents(List<Event> events) {
-//         this.events = events;
-//     }
-
-//     public void addEvent(Event event) {
-//         events.add(event);
-//     }
-
-//     public void describeEvent(Event event) {
-//         // Logic to describe the event
-//     }
-// }
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 //import java.awt.Component;

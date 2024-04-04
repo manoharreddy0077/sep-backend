@@ -1,14 +1,12 @@
 package com.education.models;
-import java.util.List;
-import java.util.ArrayList;
-
+// Resource class representing the main resource which holds sub-resources
 public class Resource {
     private String title;
-    private List<SubResource> subResources;
+    private SubResource content; // Aggregation relationship
 
     public Resource(String title) {
         this.title = title;
-        this.subResources = new ArrayList<>();
+        this.content = null;
     }
 
     public String getTitle() {
@@ -19,19 +17,17 @@ public class Resource {
         this.title = title;
     }
 
-    public List<SubResource> getSubResources() {
-        return subResources;
+    public SubResource getContent() {
+        return content;
     }
 
-    public void setSubResources(List<SubResource> subResources) {
-        this.subResources = subResources;
+    // Set the content of the resource (single sub-resource)
+    public void setContent(SubResource content) {
+        this.content = content;
     }
 
-    public void addSubResource(SubResource subResource , Resource resource) {
-        if (this.equals(resource)) {
-            this.subResources.add(subResource);
-        } else {
-            System.out.println("Cannot add subresource to a different resource.");
-        }
+    // View the main resource's content (single sub-resource)
+    public SubResource viewResource() {
+        return content;
     }
 }

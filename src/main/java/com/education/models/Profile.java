@@ -1,7 +1,7 @@
 package com.education.models;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.ArrayList;;
 
 public class Profile {
     private String name;
@@ -11,13 +11,13 @@ public class Profile {
     private int age;
     private List<Feedback> pastFeedbacks;
 
-    public Profile(String name,String SRN,String email, int phoneNo, int age) {
+    public Profile(String name, String SRN, String email, int phoneNo, int age) {
         this.name = name;
-        this.SRN=SRN;
+        this.SRN = SRN;
         this.email = email;
         this.phoneNo = phoneNo;
         this.age = age;
-        this.pastFeedbacks=new ArrayList<>();
+        this.pastFeedbacks = new ArrayList<>();
     }
 
     public String getName() {
@@ -32,8 +32,8 @@ public class Profile {
         return SRN;
     }
 
-    public void setSRN(String username) {
-        this.SRN = username;
+    public void setSRN(String SRN) {
+        this.SRN = SRN;
     }
 
     public String getEmail() {
@@ -66,8 +66,21 @@ public class Profile {
 
     public void viewProfile() {
         // Logic to view the profile
+        System.out.println("Name: " + name);
+        System.out.println("SRN: " + SRN);
+        System.out.println("Email: " + email);
+        System.out.println("Phone Number: " + phoneNo);
+        System.out.println("Age: " + age);
+        System.out.println("Past Feedbacks:");
+        for (Feedback feedback : pastFeedbacks) {
+            System.out.println("- " + feedback.getMessage());
+        }
     }
 
+    public void addFeedback(Feedback feedback) {
+        pastFeedbacks.add(feedback);
+    }
+    
     public List<Feedback> getPastFeedbacks() {
         return pastFeedbacks;
     }
@@ -75,9 +88,4 @@ public class Profile {
     public void setPastFeedbacks(List<Feedback> pastFeedbacks) {
         this.pastFeedbacks = pastFeedbacks;
     }
-
-    public void addFeedback(Feedback feedback) {
-        pastFeedbacks.add(feedback);
-    }
 }
-

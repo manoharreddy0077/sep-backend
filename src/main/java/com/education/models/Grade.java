@@ -1,6 +1,5 @@
 package com.education.models;
 
-
 public class Grade {
     private String grade;
 

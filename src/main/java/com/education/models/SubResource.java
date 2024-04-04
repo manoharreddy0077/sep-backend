@@ -1,13 +1,16 @@
 package com.education.models;
 
-// import java.util.List;
+import java.util.ArrayList;
+import java.util.List;
+
+// SubResource class representing the individual sub-resources
 public class SubResource {
     private String title;
-    private String filePath; // File path or URL to the PDF file
+    private List<SubResource> resources; // Aggregation relationship
 
-    public SubResource(String title, String filePath) {
+    public SubResource(String title) {
         this.title = title;
-        this.filePath = filePath;
+        this.resources = new ArrayList<>();
     }
 
     public String getTitle() {
@@ -18,11 +21,8 @@ public class SubResource {
         this.title = title;
     }
 
-    public String getFilePath() {
-        return filePath;
+    public List<SubResource> getResources() {
+        return resources;
     }
 
-    public void setFilePath(String filePath) {
-        this.filePath = filePath;
-    }
 }
