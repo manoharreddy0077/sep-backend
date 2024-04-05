@@ -1,6 +1,4 @@
 package com.education.controllers;
-
-import com.education.models.Resource;
 import com.education.models.SubResource;
 import org.springframework.web.bind.annotation.*;
 

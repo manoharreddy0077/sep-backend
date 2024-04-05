@@ -1,6 +1,5 @@
 package com.education.models;
 
-import java.util.Date;
 
 public class Course {
     private String courseId;
