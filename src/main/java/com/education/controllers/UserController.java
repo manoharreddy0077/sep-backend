@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 // import org.springframework.web.bind.annotation.RequestBody;
 
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 
 @Controller
@@ -18,9 +19,8 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
     
     @GetMapping("/login")
-    public String login() {
-        // Logic to check login credentials
-        return "login";
+    public String login() {    
+        return "loginPage";
     }
     // @PostMapping("/logout")
     // public void logout(@RequestParam("username") String username) {
@@ -28,11 +28,12 @@ public class UserController {
     // // Invalidate user's session or token
     // // Perform other logout-related operations as needed
     // }
-    // @GetMapping("/viewProfile")
-    // public String viewProfile(@RequestParam("username") String username) {
-    //     // logic to view user profile 
-    //     return new String();
-    // }
+     @GetMapping("/viewProfile")
+//     public String viewProfile(@RequestParam("username") String username) {
+     public String viewProfile() {
+         // logic to view user profile
+         return "viewProfile";
+     }
     // @PutMapping("updateProfile")
     // public void updateProfile(@RequestParam("username") String username, @RequestBody User updatedUser) {
     //     //Logic to update user profile
