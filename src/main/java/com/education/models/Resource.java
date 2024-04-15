@@ -1,12 +1,37 @@
 package com.education.models;
-// Resource class representing the main resource which holds sub-resources
+
+import jakarta.persistence.*;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
 public class Resource {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private String title;
-    private SubResource content; // Aggregation relationship
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "sub_resource_id", referencedColumnName = "id")
+    private SubResource content;
+
+    public Resource() {
+        // Default constructor required by JPA
+    }
 
     public Resource(String title) {
         this.title = title;
-        this.content = null;
+    }
+
+    // Getters and setters
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -21,7 +46,6 @@ public class Resource {
         return content;
     }
 
-    // Set the content of the resource (single sub-resource)
     public void setContent(SubResource content) {
         this.content = content;
     }

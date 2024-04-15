@@ -1,49 +1,44 @@
 package com.education.controllers;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import com.education.models.User;
+import com.education.repositories.UserRepository;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-
-// import org.springframework.web.bind.annotation.RequestMapping;
-// import org.springframework.web.bind.annotation.RequestParam;
-// import org.springframework.web.bind.annotation.RestController;
-// import org.springframework.web.bind.annotation.PostMapping;
-// import org.springframework.web.bind.annotation.RequestBody;
-
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-
 @Controller
-@RequestMapping("/users")
 public class UserController {
-    
+
+    @Autowired
+    private UserRepository userRepository;
+
+    // Mapping for the initial login page
     @GetMapping("/login")
-    public String login() {    
-        return "loginPage";
+    public String loginPage() {
+        return "login"; // This will render login.jsp
     }
-    // @PostMapping("/logout")
-    // public void logout(@RequestParam("username") String username) {
-    //     // Logic to log out the user
-    // // Invalidate user's session or token
-    // // Perform other logout-related operations as needed
-    // }
-     @GetMapping("/viewProfile")
-//     public String viewProfile(@RequestParam("username") String username) {
-     public String viewProfile() {
-         // logic to view user profile
-         return "viewProfile";
-     }
-    // @PutMapping("updateProfile")
-    // public void updateProfile(@RequestParam("username") String username, @RequestBody User updatedUser) {
-    //     //Logic to update user profile
-    // }
-    // @PostMapping("/register")
-    // public boolean register(@RequestParam("username") String username , @RequestParam("password") String password , @RequestParam("SRN") String srn,@RequestParam("phnumber") String phnumber) {
-    //    // Logic to register a new user
-    //     // Create a new User object with provided username and password
-    //     // Save the user to the database or perform other registration-related operations
-    //     return true; // Return true if registration is successful, false otherwise
-    // }
-    
+
+    @PostMapping("/login")
+    public ModelAndView login(@RequestParam String username, @RequestParam String password) {
+        ModelAndView modelAndView = new ModelAndView();
+        // Check if the provided username and password match any records in the database
+        User user = userRepository.findByUsernameAndPassword(username, password);
+        if (user != null) {
+            // Redirect to the homepage if login is successful
+            modelAndView.setViewName("redirect:/home");
+        } else {
+            // Add an error message to the model and redirect back to the login page
+            modelAndView.setViewName("redirect:/login");
+            modelAndView.addObject("error", "Invalid username or password");
+        }
+        return modelAndView;
+    }
+    @GetMapping("/home")
+    public String homePage() {
+        return "home"; // This will render home.jsp
+    }
 }

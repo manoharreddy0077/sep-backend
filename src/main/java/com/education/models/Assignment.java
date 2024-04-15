@@ -2,6 +2,9 @@ package com.education.models;
 
 import java.util.Date;
 import org.springframework.web.multipart.MultipartFile;
+import java.io.File;
+import java.io.IOException;
+
 
 public class Assignment {
     private String assignmentId;
@@ -15,6 +18,10 @@ public class Assignment {
         this.title = title;
         this.description = description;
         this.dueDate = dueDate;
+    }
+
+    public Assignment() {
+        // Default initialization if needed
     }
 
     public String getAssignmentId() {
@@ -57,8 +64,33 @@ public class Assignment {
         this.grade = grade;
     }
 
-    public void submitAssignment(String username, MultipartFile assignmentFile) {
-        // Logic to submit assignment
+    public void submitAssignment(String assignmentId, MultipartFile assignmentFile) {
+        // Check if the assignment file is not empty
+        if (!assignmentFile.isEmpty()) {
+            try {
+                // Get the bytes from the uploaded file
+                // byte[] bytes = assignmentFile.getBytes();
+
+                // Create directory if it does not exist
+                File dir = new File("assignments");
+                if (!dir.exists()) {
+                    dir.mkdirs();
+                }
+
+                // Create the file on server
+                File serverFile = new File(dir.getAbsolutePath() + File.separator + assignmentId + ".pdf");
+                // Save the uploaded file to the server
+                assignmentFile.transferTo(serverFile);
+
+                // Now you can do further processing like updating the database or sending notifications
+                System.out.println("Assignment submitted successfully.");
+
+            } catch (IOException e) {
+                System.out.println("Failed to submit assignment: " + e.getMessage());
+            }
+        } else {
+            System.out.println("Assignment file is empty.");
+        }
     }
 
     public Assignment viewAssignment() {

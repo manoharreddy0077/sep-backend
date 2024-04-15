@@ -3,21 +3,45 @@ package com.education.models;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "Profile")
 public class Profile {
+
+    @Id
+    @Column(name = "userId") // Adjust if needed to match the column name in the Profile table
+    private String user_id; ;
+
     private String name;
-    private String SRN;
     private String email;
-    private int phoneNo;
+    // private String SRN;
+    private int phone_no; // Adjusted to match the database schema
     private int age;
+
+    @OneToOne
+    @JoinColumn(name = "userId") // Assuming this is the name of the foreign key column in the Profile table
+    private User user;
+
+    @OneToMany(mappedBy = "profile")
     private List<Feedback> pastFeedbacks;
 
-    public Profile(String name, String SRN, String email, int phoneNo, int age) {
+    public Profile(String name, String email, int phone_no, int age) {
         this.name = name;
-        this.SRN = SRN;
+        // this.SRN = SRN;
         this.email = email;
-        this.phoneNo = phoneNo;
+        this.phone_no = phone_no;
         this.age = age;
         this.pastFeedbacks = new ArrayList<>();
+    }
+    public Profile() {
+        // Required by Hibernate
     }
 
     public String getName() {
@@ -28,14 +52,6 @@ public class Profile {
         this.name = name;
     }
 
-    public String getSRN() {
-        return SRN;
-    }
-
-    public void setSRN(String SRN) {
-        this.SRN = SRN;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -44,12 +60,12 @@ public class Profile {
         this.email = email;
     }
 
-    public int getPhoneNo() {
-        return phoneNo;
+    public int getphone_no() {
+        return phone_no;
     }
 
-    public void setPhoneNo(int phoneNo) {
-        this.phoneNo = phoneNo;
+    public void setphone_no(int phone_no) {
+        this.phone_no = phone_no;
     }
 
     public int getAge() {
@@ -64,17 +80,18 @@ public class Profile {
         // Logic to update the profile
     }
 
-    public void viewProfile() {
+    public String viewProfile() {
         // Logic to view the profile
-        System.out.println("Name: " + name);
-        System.out.println("SRN: " + SRN);
-        System.out.println("Email: " + email);
-        System.out.println("Phone Number: " + phoneNo);
-        System.out.println("Age: " + age);
-        System.out.println("Past Feedbacks:");
+        StringBuilder profileInfo = new StringBuilder();
+        profileInfo.append("Name: ").append(name).append("\n");
+        profileInfo.append("Email: ").append(email).append("\n");
+        profileInfo.append("Phone Number: ").append(phone_no).append("\n");
+        profileInfo.append("Age: ").append(age).append("\n");
+        profileInfo.append("Past Feedbacks:\n");
         for (Feedback feedback : pastFeedbacks) {
-            System.out.println("- " + feedback.getMessage());
+            profileInfo.append("- ").append(feedback.getMessage()).append("\n");
         }
+        return profileInfo.toString();
     }
 
     public void addFeedback(Feedback feedback) {

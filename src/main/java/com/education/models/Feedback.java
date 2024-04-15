@@ -1,10 +1,37 @@
 package com.education.models;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+
+@Entity
 public class Feedback {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private String message;
+
+    @ManyToOne
+    private Profile profile;
+
+    public Feedback() {
+    }
 
     public Feedback(String message) {
         this.message = message;
+    }
+
+    // Getters and setters
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getMessage() {
@@ -15,16 +42,11 @@ public class Feedback {
         this.message = message;
     }
 
-    public void sendFeedback(Profile profile) {
-        // Logic to send feedback to the profile
-        profile.addFeedback(this);
+    public Profile getProfile() {
+        return profile;
     }
 
-    public static void viewPastFeedbacks(Profile profile) {
-        // Logic to retrieve and view past feedbacks for the profile
-        System.out.println("Past Feedbacks for " + profile.getName() + ":");
-        for (Feedback feedback : profile.getPastFeedbacks()) {
-            System.out.println("- " + feedback.getMessage());
-        }
+    public void setProfile(Profile profile) {
+        this.profile = profile;
     }
 }

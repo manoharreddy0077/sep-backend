@@ -1,19 +1,34 @@
 package com.education.controllers;
-import com.education.models.SubResource;
-import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
+import com.education.models.Resource;
+import com.education.repositories.ResourceRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+// import org.springframework.web.bind.annotation.PathVariable;
+
 import java.util.List;
 
-@RestController
-@RequestMapping("/resources")
+@Controller
 public class ResourceController {
-    
-    @GetMapping("/{resourceId}/subresources")
-    public List<SubResource> getSubResources(@PathVariable String resourceId) {
-        // Logic to fetch sub-resources for a given resource ID
-        List<SubResource> subResources = new ArrayList<>();
-        // Add logic to retrieve sub-resources from the database or other sources
-        return subResources;
+
+    @Autowired
+    private ResourceRepository resourceRepository;
+
+    // Method to fetch resources from the database and display resources.jsp page
+    @GetMapping("/resources")
+    public String showResourcesPage(Model model) {
+        // Fetch all resources from the database
+        List<Resource> resources = resourceRepository.findAll();
+        
+        // Add resources to the model
+        model.addAttribute("resources", resources);
+        
+        // Return the name of the JSP file
+        return "resources";
     }
+
+    // Add other handler methods as needed for resource-related functionalities
 }
+

@@ -1,23 +1,39 @@
 package com.education.models;
 
+// import javax.persistence.*;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+
+import java.util.List;
+
+@Entity
 public class Course {
-    private String courseId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long courseId;
+
     private String courseName;
     private String instructorName;
-    private Assignment assignment;
 
-    public Course(String courseId, String courseName, String instructorName) {
-        this.courseId = courseId;
+    @OneToMany(mappedBy = "course")
+    private List<Grade> grades;
+
+    // Constructor, getters, setters, and other methods
+
+    public Course(String courseName, String instructorName) {
         this.courseName = courseName;
         this.instructorName = instructorName;
     }
 
-    public String getCourseId() {
+    public Long getCourseId() {
         return courseId;
     }
 
-    public void setCourseId(String courseId) {
+    public void setCourseId(Long courseId) {
         this.courseId = courseId;
     }
 
@@ -37,12 +53,12 @@ public class Course {
         this.instructorName = instructorName;
     }
 
-    public Assignment getAssignment() {
-        return assignment;
+    public List<Grade> getGrades() {
+        return grades;
     }
 
-    public void setAssignment(Assignment assignment) {
-        this.assignment = assignment;
+    public void setGrades(List<Grade> grades) {
+        this.grades = grades;
     }
 
     public String viewCourseDescription() {
