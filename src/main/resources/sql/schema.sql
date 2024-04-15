@@ -10,8 +10,8 @@ CREATE TABLE user (
 -- Course Table
 CREATE TABLE course (
     course_id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100),
-    instructor VARCHAR(100)
+    course_name VARCHAR(100),
+    instructor_name VARCHAR(100)
 );
 
 -- Assignment Table
@@ -98,7 +98,7 @@ INSERT INTO user (username, password) VALUES
 ('emily_davis', 'secure789'),
 ('michael_wilson', '12345678');
 
-INSERT INTO course (name, instructor) VALUES
+INSERT INTO course (course_name, instructor_name) VALUES
 ('Mathematics', 'Prof. Smith'),
 ('History', 'Dr. Johnson'),
 ('Computer Science', 'Prof. Brown'),

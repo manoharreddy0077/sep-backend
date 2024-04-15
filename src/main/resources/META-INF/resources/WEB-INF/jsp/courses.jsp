@@ -5,8 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Courses</title>
-    <!-- Include Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
     <div class="container mt-4">
@@ -14,33 +12,23 @@
         <table class="table">
             <thead>
                 <tr>
+                    <th>Course ID</th>
                     <th>Course Name</th>
-                    <th>Status</th>
-                    <th>Credits</th>
-                    <th>Teacher</th>
+                    <th>Instructor</th>
                 </tr>
             </thead>
             <tbody>
-                <!-- Replace the dummy data with dynamic data from the server -->
-                <tr>
-                    <td>Course 1</td>
-                    <td>Enrolled</td>
-                    <td>3</td>
-                    <td>Teacher A</td>
-                </tr>
-                <tr>
-                    <td>Course 2</td>
-                    <td>Not Enrolled</td>
-                    <td>4</td>
-                    <td>Teacher B</td>
-                </tr>
-                <!-- Add more rows as needed -->
+            <h2>${courses}</h2>
+                <!-- Iterate over the list of courses and render each course -->
+                <c:forEach items="${courses}" var="course">
+                    <tr>
+                        <td>${course.course_id}</td>
+                        <td>${course.course_name}</td>
+                        <td>${course.instructor_name}</td>
+                    </tr>
+                </c:forEach>
             </tbody>
         </table>
     </div>
-    <!-- Include Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

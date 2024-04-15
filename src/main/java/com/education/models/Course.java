@@ -14,43 +14,55 @@ import java.util.List;
 public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long courseId;
+    private Long course_id;
 
-    private String courseName;
-    private String instructorName;
+    private String course_name;
+    private String instructor_name;
 
     @OneToMany(mappedBy = "course")
     private List<Grade> grades;
 
     // Constructor, getters, setters, and other methods
 
-    public Course(String courseName, String instructorName) {
-        this.courseName = courseName;
-        this.instructorName = instructorName;
+    public Course(String course_name, String instructor_name) {
+        this.course_name = course_name;
+        this.instructor_name = instructor_name;
+    }
+    public Course(){
+
     }
 
-    public Long getCourseId() {
-        return courseId;
+    public Long getcourse_id() {
+        return course_id;
     }
 
-    public void setCourseId(Long courseId) {
-        this.courseId = courseId;
+    public void setcourse_id(Long course_id) {
+        this.course_id = course_id;
     }
 
-    public String getCourseName() {
-        return courseName;
+    public String getcourse_name() {
+        return course_name;
     }
 
-    public void setCourseName(String courseName) {
-        this.courseName = courseName;
+    public void setcourse_name(String course_name) {
+        this.course_name = course_name;
     }
 
-    public String getInstructorName() {
-        return instructorName;
+    public String getinstructor_name() {
+        return instructor_name;
     }
+    @Override
+public String toString() {
+    return "Course{" +
+            "course_id=" + course_id +
+            ", course_name='" + course_name + '\'' +
+            ", instructor_name='" + instructor_name + '\'' +
+            '}';
+}
 
-    public void setInstructorName(String instructorName) {
-        this.instructorName = instructorName;
+
+    public void setinstructor_name(String instructor_name) {
+        this.instructor_name = instructor_name;
     }
 
     public List<Grade> getGrades() {

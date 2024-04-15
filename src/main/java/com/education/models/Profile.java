@@ -22,7 +22,7 @@ public class Profile {
     private String name;
     private String email;
     // private String SRN;
-    private int phone_no; // Adjusted to match the database schema
+    private String phone_no; // Adjusted to match the database schema
     private int age;
 
     @OneToOne
@@ -32,7 +32,7 @@ public class Profile {
     @OneToMany(mappedBy = "profile")
     private List<Feedback> pastFeedbacks;
 
-    public Profile(String name, String email, int phone_no, int age) {
+    public Profile(String name, String email, String phone_no, int age) {
         this.name = name;
         // this.SRN = SRN;
         this.email = email;
@@ -60,11 +60,11 @@ public class Profile {
         this.email = email;
     }
 
-    public int getphone_no() {
+    public String getphone_no() {
         return phone_no;
     }
 
-    public void setphone_no(int phone_no) {
+    public void setphone_no(String phone_no) {
         this.phone_no = phone_no;
     }
 
