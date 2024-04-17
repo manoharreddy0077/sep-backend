@@ -17,6 +17,10 @@ public class Grade {
     @JoinColumn(name = "courseId")
     private Course course;
 
+    @ManyToOne
+    @JoinColumn(name = "username") // Assuming the column in the database is named "username"
+    private User user; // Add this field to reference the User entity
+
     private String grade;
 
     public Grade() {
