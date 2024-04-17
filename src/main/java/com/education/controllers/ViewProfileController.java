@@ -20,7 +20,7 @@ public class ViewProfileController {
         User user = userRepository.findByUsername(username);
         if (user != null) {
             model.addAttribute("user", user);
-            return "view_profile";
+            return "viewprofile";
         } else {
             // Handle case when user is not found
             return "error"; // You can return an error page or redirect to some other page

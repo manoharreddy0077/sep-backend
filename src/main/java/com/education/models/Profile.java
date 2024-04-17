@@ -1,47 +1,76 @@
 package com.education.models;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "Profile")
+@Table(name = "profile")
 public class Profile {
 
     @Id
-    @Column(name = "userId") // Adjust if needed to match the column name in the Profile table
-    private String user_id; ;
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Use appropriate strategy
+    @Column(name = "username")
+    private String username;
 
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "email")
     private String email;
-    // private String SRN;
-    private String phone_no; // Adjusted to match the database schema
+
+    @Column(name = "phone_no")
+    private String phoneNo;
+
+    @Column(name = "age")
     private int age;
 
+    @Column(name = "gender")
+    private String gender;
+
     @OneToOne
-    @JoinColumn(name = "userId") // Assuming this is the name of the foreign key column in the Profile table
+    @JoinColumn(name = "username")
     private User user;
 
-    @OneToMany(mappedBy = "profile")
-    private List<Feedback> pastFeedbacks;
-
-    public Profile(String name, String email, String phone_no, int age) {
-        this.name = name;
-        // this.SRN = SRN;
-        this.email = email;
-        this.phone_no = phone_no;
-        this.age = age;
-        this.pastFeedbacks = new ArrayList<>();
-    }
+    // Constructors, getters, and setters
+    // Constructors, getters, and setters
     public Profile() {
-        // Required by Hibernate
+    }
+
+    public Profile(String username, String name, String email, String phoneNo, int age, String gender) {
+        this.username = username;
+        this.name = name;
+        this.email = email;
+        this.phoneNo = phoneNo;
+        this.age = age;
+        this.gender = gender;
+    }
+
+    @Override
+    public String toString() {
+        return "Profile{" +
+                "username='" + username + '\'' +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", phoneNo='" + phoneNo + '\'' +
+                ", age=" + age +
+                ", gender='" + gender + '\'' +
+                '}';
+    }
+    // Getters and setters for all fields
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getName() {
@@ -60,12 +89,12 @@ public class Profile {
         this.email = email;
     }
 
-    public String getphone_no() {
-        return phone_no;
+    public String getphoneNo() {
+        return phoneNo;
     }
 
-    public void setphone_no(String phone_no) {
-        this.phone_no = phone_no;
+    public void setphoneNo(String phoneNo) {
+        this.phoneNo = phoneNo;
     }
 
     public int getAge() {
@@ -76,33 +105,11 @@ public class Profile {
         this.age = age;
     }
 
-    public void updateProfile() {
-        // Logic to update the profile
+    public String getGender() {
+        return gender;
     }
 
-    public String viewProfile() {
-        // Logic to view the profile
-        StringBuilder profileInfo = new StringBuilder();
-        profileInfo.append("Name: ").append(name).append("\n");
-        profileInfo.append("Email: ").append(email).append("\n");
-        profileInfo.append("Phone Number: ").append(phone_no).append("\n");
-        profileInfo.append("Age: ").append(age).append("\n");
-        profileInfo.append("Past Feedbacks:\n");
-        for (Feedback feedback : pastFeedbacks) {
-            profileInfo.append("- ").append(feedback.getMessage()).append("\n");
-        }
-        return profileInfo.toString();
-    }
-
-    public void addFeedback(Feedback feedback) {
-        pastFeedbacks.add(feedback);
-    }
-    
-    public List<Feedback> getPastFeedbacks() {
-        return pastFeedbacks;
-    }
-
-    public void setPastFeedbacks(List<Feedback> pastFeedbacks) {
-        this.pastFeedbacks = pastFeedbacks;
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 }
