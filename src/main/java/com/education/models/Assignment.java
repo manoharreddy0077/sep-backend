@@ -5,21 +5,42 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import java.util.Date;
 
+@Entity
+@Table(name = "assignment")
 public class Assignment {
+    @Id
     private String assignmentId;
     private String title;
     private String description;
     private Date dueDate;
-    private Grade grade;
+    private Long course_id;
+
 
     public Assignment(String assignmentId, String title, String description, Date dueDate) {
         this.assignmentId = assignmentId;
         this.title = title;
         this.description = description;
         this.dueDate = dueDate;
+        // this.course_id=course_id;
     }
 
+    @Override
+    public String toString() {
+        return "Assignment{" +
+                "assignmentId=" + assignmentId +
+                ", course=" + course_id +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", dueDate=" + dueDate +
+                '}';
+    }
+
+    
     public Assignment() {
         // Default initialization if needed
     }
@@ -27,10 +48,11 @@ public class Assignment {
     public String getAssignmentId() {
         return assignmentId;
     }
-
+    
     public void setAssignmentId(String assignmentId) {
         this.assignmentId = assignmentId;
     }
+    
 
     public String getTitle() {
         return title;
@@ -54,14 +76,6 @@ public class Assignment {
 
     public void setDueDate(Date dueDate) {
         this.dueDate = dueDate;
-    }
-
-    public Grade getGrade() {
-        return grade;
-    }
-
-    public void setGrade(Grade grade) {
-        this.grade = grade;
     }
 
     public void submitAssignment(String assignmentId, MultipartFile assignmentFile) {

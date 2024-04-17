@@ -1,6 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,18 +12,16 @@
     <table>
         <thead>
             <tr>
-                <th>Course</th>
+                <th>Course Name</th>
                 <th>Grade</th>
             </tr>
         </thead>
         <tbody>
             <!-- Loop through grades and display them -->
-            <% for (Grade grade : grades) { %>
-                <tr>
-                    <td><%= grade.getCourseName() %></td>
-                    <td><%= grade.getGrade() %></td>
-                </tr>
-            <% } %>
+            <tr th:each="grade : ${grades}">
+                <td th:text="${grade.getCourseName()}"></td>
+                <td th:text="${grade.grade}"></td>
+            </tr>
         </tbody>
     </table>
 

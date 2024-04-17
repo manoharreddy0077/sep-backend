@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendar</title>
+    <!-- Include any necessary CSS files -->
+    <style>
+        /* Define CSS styles for calendar */
+        .calendar {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        .calendar th, .calendar td {
+            border: 1px solid black;
+            text-align: center;
+            padding: 10px;
+        }
+        .has-event {
+            background-color: green; /* Background color for upcoming events */
+            cursor: pointer; /* Change cursor to pointer for clickable events */
+        }
+        .past-event {
+            background-color: orange; /* Background color for past events */
+            cursor: pointer; /* Change cursor to pointer for clickable events */
+        }
+    </style>
+</head>
+<body>
+    <h1>Calendar</h1>
+    <!-- Display the calendar here -->
+    <table class="calendar">
+        <thead>
+            <tr>
+                <th>Sunday</th>
+                <th>Monday</th>
+                <th>Tuesday</th>
+                <th>Wednesday</th>
+                <th>Thursday</th>
+                <th>Friday</th>
+                <th>Saturday</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="week : ${weeks}">
+                <td th:each="day : ${week.days}" 
+                    th:class="${day.hasEvent} ? 'has-event' : ''" 
+                    th:classappend="${day.isPast && day.hasEvent} ? ' past-event' : ''">
+                    <a th:if="${day.hasEvent}" th:href="@{/events}"> <!-- Navigate to /events if day has event -->
+                        <span th:if="${day.monthName != null}" th:text="${day.monthName}"></span>
+                        <span th:text="${day.date}"></span>
+                    </a>
+                    <span th:unless="${day.hasEvent}"> <!-- Do not navigate if day does not have event -->
+                        <span th:if="${day.monthName != null}" th:text="${day.monthName}"></span>
+                        <span th:text="${day.date}"></span>
+                    </span>
+                </td>
+            </tr>
+        </tbody>        
+    </table>
+</body>
+</html>

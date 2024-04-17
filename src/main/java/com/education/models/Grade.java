@@ -19,6 +19,18 @@ public class Grade {
 
     private String grade;
 
+    public Grade() {
+    }
+
+    @Override
+    public String toString() {
+        return "GRADE{" +
+                "grade=" + grade +
+                ", courseId=" + (course != null ? course.getCourse_id() : null) +
+                ", courseName='" + (course != null ? course.getCourse_name() : null) + '\'' +
+                '}';
+    }
+
     public Grade(String grade) {
         this.grade = grade;
     }
@@ -31,6 +43,27 @@ public class Grade {
         this.grade = grade;
     }
 
+    // Getter for Course ID
+    public Long getCourseId() {
+        return course != null ? course.getCourse_id() : null;
+    }
+
+    // Getter for Course Name
+    public String getCourseName() {
+        return course != null ? course.getCourse_name() : null;
+    }
+
+    // Setter for Course
+    public void setCourse(Course course) {
+        this.course = course;
+    }
+
+    // Getter for Course
+    public Course getCourse() {
+        return course;
+    }
+
+    // Other methods
     public String viewGrade() {
         return grade;
     }

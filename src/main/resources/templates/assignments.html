@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:c="http://java.sun.com/jsp/jstl/core">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignments</title>
+    <!-- Add your CSS stylesheets if needed -->
+</head>
+<body>
+    <h1>Assignments</h1>
+    {}
+    <!-- Display Pending Assignments -->
+    <h2>Pending Assignments</h2>
+    <div th:each="assignment : ${assignmentList}">
+        <div>
+            <h3 th:text="${assignment.title}"></h3>
+            <p th:text="${assignment.description}"></p>
+            <p>Due Date: <span th:text="${assignment.dueDate}"></span></p>
+            <form action="/submitAssignment" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="assignmentId" th:value="${assignment.assignmentId}">
+                <input type="file" name="assignmentFile">
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+    </div>
+
+    <!-- Display Completed Assignments -->
+    <h2>Completed Assignments</h2>
+    <div th:each="assignment : ${completedAssignments}">
+        <div>
+            <h3 th:text="${assignment.title}"></h3>
+            <p th:text="${assignment.description}"></p>
+            <p>Due Date: <span th:text="${assignment.dueDate}"></span></p>
+            <!-- Add more details or actions as needed -->
+        </div>
+    </div>
+
+    <!-- Display Upcoming Assignments -->
+    <h2>Upcoming Assignments</h2>
+    <div th:each="assignment : ${upcomingAssignments}">
+        <div>
+            <h3 th:text="${assignment.title}"></h3>
+            <p th:text="${assignment.description}"></p>
+            <p>Due Date: <span th:text="${assignment.dueDate}"></span></p>
+            <!-- Add more details or actions as needed -->
+        </div>
+    </div>
+</body>
+</html>

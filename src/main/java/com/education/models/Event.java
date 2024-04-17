@@ -1,27 +1,43 @@
 package com.education.models;
 
+// import javax.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+import jakarta.persistence.Entity;
+
 import java.util.Date;
 
+@Entity
 public class Event {
-    private String eventId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long eventId;
+
     private String title;
     private Date startTime;
     private Date endTime;
     private String description;
 
-    public Event(String eventId, String title, Date startTime, Date endTime, String description) {
-        this.eventId = eventId;
-        this.title = title;
-        this.startTime = startTime;
-        this.endTime = endTime;
-        this.description = description;
-    }
-
-    public String getEventId() {
+    public Long getEventId() {
         return eventId;
     }
+    public Event(){
+        
+    }
+    @Override
+    public String toString() {
+        return "Event{" +
+                "eventId=" + eventId +
+                ", title='" + title + '\'' +
+                ", startTime=" + startTime +
+                ", endTime=" + endTime +
+                ", description='" + description + '\'' +
+                '}';
+    }
 
-    public void setEventId(String eventId) {
+    public void setEventId(Long eventId) {
         this.eventId = eventId;
     }
 
@@ -57,4 +73,3 @@ public class Event {
         this.description = description;
     }
 }
-

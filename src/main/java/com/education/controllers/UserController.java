@@ -17,11 +17,15 @@ public class UserController {
     private UserRepository userRepository;
 
     // Mapping for the initial login page
+    // @GetMapping("/login")
+    // public String loginPage() {
+    //     return "login"; // This will render login.jsp
+    // }
+
     @GetMapping("/login")
     public String loginPage() {
-        return "login"; // This will render login.jsp
+        return "login"; // This will render login.html
     }
-
     @PostMapping("/login")
     public ModelAndView login(@RequestParam String username, @RequestParam String password) {
         ModelAndView modelAndView = new ModelAndView();
@@ -32,11 +36,11 @@ public class UserController {
             modelAndView.setViewName("redirect:/home");
         } else {
             // Add an error message to the model and redirect back to the login page
-            modelAndView.setViewName("redirect:/login");
-            modelAndView.addObject("error", "Invalid username or password");
+            modelAndView.setViewName("redirect:/login?error=Invalid username or password");
         }
         return modelAndView;
     }
+    
     @GetMapping("/home")
     public String homePage() {
         return "home"; // This will render home.jsp

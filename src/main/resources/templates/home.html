@@ -1,6 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -69,11 +68,12 @@
             <!-- Side navigation -->
             <div class="col-md-3">
                 <div class="list-group">
-                    <a href="courses" class="list-group-item list-group-item-action">Courses</a>
-                    <a href="assignments" class="list-group-item list-group-item-action">Assignments</a>
-                    <a href="resources" class="list-group-item list-group-item-action">Resources</a>
-                    <a href="grades" class="list-group-item list-group-item-action">Grades</a>
-                    <a href="calendar" class="list-group-item list-group-item-action">Calendar</a>
+                    <a th:href="@{/courses}" class="list-group-item list-group-item-action">Courses</a>
+                    <a th:href="@{/assignments}" class="list-group-item list-group-item-action">Assignments</a>
+                    <a th:href="@{/resources}" class="list-group-item list-group-item-action">Resources</a>
+                    <a th:href="@{/grades}" class="list-group-item list-group-item-action">Grades</a>
+                    <a th:href="@{/calendar}" class="list-group-item list-group-item-action">Calendar</a>
+                    <a th:href="@{/events}" class="list-group-item list-group-item-action">Events</a>
                 </div>
             </div>
             <!-- Main content area -->

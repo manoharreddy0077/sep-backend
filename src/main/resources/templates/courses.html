@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses</title>
+</head>
+<body>
+    <div class="container mt-4">
+        <h2>Courses</h2>
+        <table class="table" id="coursesTable">
+            <thead>
+                <tr>
+                    <th>Course ID</th>
+                    <th>Course Name</th>
+                    <th>Instructor</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Thymeleaf will dynamically populate this table body -->
+                <tr th:each="course : ${courses}">
+                    <td th:text="${course.course_id}"></td>
+                    <td th:text="${course.course_name}"></td>
+                    <td th:text="${course.instructor_name}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

@@ -32,23 +32,23 @@ public class Course {
 
     }
 
-    public Long getcourse_id() {
+    public Long getCourse_id() {
         return course_id;
     }
 
-    public void setcourse_id(Long course_id) {
+    public void setCourse_id(Long course_id) {
         this.course_id = course_id;
     }
 
-    public String getcourse_name() {
+    public String getCourse_name() {
         return course_name;
     }
 
-    public void setcourse_name(String course_name) {
+    public void setCourse_name(String course_name) {
         this.course_name = course_name;
     }
 
-    public String getinstructor_name() {
+    public String getInstructor_name() {
         return instructor_name;
     }
     @Override
@@ -61,7 +61,7 @@ public String toString() {
 }
 
 
-    public void setinstructor_name(String instructor_name) {
+    public void setInstructor_name(String instructor_name) {
         this.instructor_name = instructor_name;
     }
 
