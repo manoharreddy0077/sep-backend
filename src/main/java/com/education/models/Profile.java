@@ -8,6 +8,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
 
 @Entity
@@ -15,8 +16,7 @@ import jakarta.persistence.Table;
 public class Profile {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Use appropriate strategy
-    @Column(name = "username")
+    @Column(name = "username") // This serves as both primary key and foreign key
     private String username;
 
     @Column(name = "name")
@@ -26,7 +26,7 @@ public class Profile {
     private String email;
 
     @Column(name = "phone_no")
-    private String phoneNo;
+    private String phone_no;
 
     @Column(name = "age")
     private int age;
@@ -35,7 +35,7 @@ public class Profile {
     private String gender;
 
     @OneToOne
-    @JoinColumn(name = "username")
+    @PrimaryKeyJoinColumn
     private User user;
 
     // Constructors, getters, and setters
@@ -43,11 +43,11 @@ public class Profile {
     public Profile() {
     }
 
-    public Profile(String username, String name, String email, String phoneNo, int age, String gender) {
+    public Profile(String username, String name, String email, String phone_no, int age, String gender) {
         this.username = username;
         this.name = name;
         this.email = email;
-        this.phoneNo = phoneNo;
+        this.phone_no = phone_no;
         this.age = age;
         this.gender = gender;
     }
@@ -58,7 +58,7 @@ public class Profile {
                 "username='" + username + '\'' +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
-                ", phoneNo='" + phoneNo + '\'' +
+                ", phone_no='" + phone_no + '\'' +
                 ", age=" + age +
                 ", gender='" + gender + '\'' +
                 '}';
@@ -89,12 +89,12 @@ public class Profile {
         this.email = email;
     }
 
-    public String getphoneNo() {
-        return phoneNo;
+    public String getPhone_no() {
+        return phone_no;
     }
 
-    public void setphoneNo(String phoneNo) {
-        this.phoneNo = phoneNo;
+    public void setPhone_no(String phone_no) {
+        this.phone_no = phone_no;
     }
 
     public int getAge() {

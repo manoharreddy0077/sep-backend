@@ -1,21 +1,26 @@
 package com.education.models;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Feedback {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long feedback_id;
 
+    @Column(name = "username") // Add this line if it doesn't exist
+    private String username;
+
+    @Column(name = "message")
     private String message;
-
-    @ManyToOne
-    private Profile profile;
+    
+    // @ManyToOne
+    // @JoinColumn(name = "username") // Assuming this is the name of the foreign key column in the Feedback table
+    // private User user; // Change this to User if User represents user information
 
     public Feedback() {
     }
@@ -24,14 +29,23 @@ public class Feedback {
         this.message = message;
     }
 
+    @Override
+    public String toString() {
+        return "Feedback{" +
+            "feedback_id=" + feedback_id +
+            ", username='" + username + '\'' +
+            ", message='" + message + '\'' +
+            '}';
+    }
+    
     // Getters and setters
 
     public Long getId() {
-        return id;
+        return feedback_id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setId(Long feedback_id) {
+        this.feedback_id = feedback_id;
     }
 
     public String getMessage() {
@@ -42,11 +56,11 @@ public class Feedback {
         this.message = message;
     }
 
-    public Profile getProfile() {
-        return profile;
+    public String getUsername() {
+        return username;
     }
 
-    public void setProfile(Profile profile) {
-        this.profile = profile;
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

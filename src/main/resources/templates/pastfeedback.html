@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Past Feedback</title>
+</head>
+<body>
+    <!-- Feedback Form -->
+    <h1>Provide Feedback</h1>
+    <form action="submitfeedback" method="post">
+        <label for="message">Feedback Message:</label><br>
+        <textarea id="message" name="message" rows="4" cols="50"></textarea><br>
+        <button type="submit">Submit Feedback</button>
+    </form>
+
+    <h1>Past Feedback</h1>
+    <ul>
+        <li th:each="feedback : ${pastFeedbacks}" th:text="${feedback.message}"></li>
+    </ul>
+</body>
+</html>

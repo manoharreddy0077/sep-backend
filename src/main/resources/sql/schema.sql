@@ -121,7 +121,7 @@ CREATE TABLE profile (
     phone_no VARCHAR(20),
     age INT,
     gender VARCHAR(10), -- Added gender field
-    PRIMARY KEY (username, phone_no),
+    PRIMARY KEY (username),
     FOREIGN KEY (username) REFERENCES user(username)
 );
 
@@ -182,6 +182,8 @@ INSERT INTO grade (course_id, username, grade) VALUES
 (3, 'PES1UG21CS503', 'A'),
 (4, 'PES1UG21CS503', 'B'),
 (5, 'PES1UG21CS503', 'A');
+
+
 
 
 

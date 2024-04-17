@@ -5,10 +5,11 @@ import jakarta.persistence.Entity;
 // import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 
 @Entity
-public class User implements IUpdatableProfile, IViewableProfile {
+public class User  {
 
     @Id
     @Column(name = "username") // Make sure the column name matches your database schema
@@ -17,7 +18,7 @@ public class User implements IUpdatableProfile, IViewableProfile {
     @Column(name = "password") // Make sure the column name matches your database schema
     private String password;
 
-    @OneToOne(mappedBy = "user")
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Profile profile;
 
     // Default constructor
@@ -29,6 +30,14 @@ public class User implements IUpdatableProfile, IViewableProfile {
         this.password=password;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "username='" + username + '\'' +
+                ", password='REDACTED'" + // Password should not be included for security reasons
+                ", profile=" + (profile != null ? profile.toString() : "null") +
+                '}';
+    }
     public String getUsername(){
         return username;
     }
@@ -59,19 +68,19 @@ public class User implements IUpdatableProfile, IViewableProfile {
         // Logic for logout
     }
 
-    @Override
-    public void updateProfile(){
-        // Logic to update profile
-        if (profile != null) {
-            profile.updateProfile(); // Assuming Profile class also implements IUpdatableProfile
-        }
-    }
+    // @Override
+    // public void updateProfile(){
+    //     // Logic to update profile
+    //     if (profile != null) {
+    //         profile.updateProfile(); // Assuming Profile class also implements IUpdatableProfile
+    //     }
+    // }
 
-    @Override
-    public String viewProfile(){
-        if (profile != null) {
-            return profile.viewProfile();
-        }
-        return null;
-    }
+    // @Override
+    // public String viewProfile(){
+    //     if (profile != null) {
+    //         return profile.viewProfile();
+    //     }
+    //     return null;
+    // }
 }

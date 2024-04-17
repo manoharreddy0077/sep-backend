@@ -22,7 +22,7 @@ public class ProfileService {
         Profile existingProfile = profileRepository.findByUsername(newProfile.getUsername());
         existingProfile.setName(newProfile.getName());
         existingProfile.setEmail(newProfile.getEmail());
-        existingProfile.setphoneNo(newProfile.getphoneNo());
+        existingProfile.setPhone_no(newProfile.getPhone_no());
         existingProfile.setAge(newProfile.getAge());
         existingProfile.setGender(newProfile.getGender());
 

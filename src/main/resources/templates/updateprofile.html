@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Profile</title>
+</head>
+<body>
+    <h2>Update Profile</h2>
+    <form action="/updateProfile" method="post">
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username" th:value="${profile.username}" required><br><br>
+
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" th:value="${profile.name}" required><br><br>
+        
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" th:value="${profile.email}" required><br><br>
+        
+        <label for="phoneNo">Phone Number:</label><br>
+        <input type="text" id="phoneNo" name="phoneNo" th:value="${profile.phone_no}" required><br><br>
+        
+        <label for="age">Age:</label><br>
+        <input type="number" id="age" name="age" th:value="${profile.age}" required><br><br>
+        
+        <label for="gender">Gender:</label><br>
+        <input type="text" id="gender" name="gender" th:value="${profile.gender}" required><br><br>
+        
+        <input type="submit" value="Update">
+    </form>
+</body>
+</html>

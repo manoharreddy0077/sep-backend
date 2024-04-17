@@ -3,6 +3,8 @@ package com.education.controllers;
 import com.education.models.User;
 import com.education.repositories.UserRepository;
 
+import jakarta.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,7 +29,8 @@ public class UserController {
         return "login"; // This will render login.html
     }
     @PostMapping("/login")
-    public ModelAndView login(@RequestParam String username, @RequestParam String password) {
+    public ModelAndView login(@RequestParam String username, @RequestParam String password,HttpSession session) {
+        session.setAttribute("username", username);
         ModelAndView modelAndView = new ModelAndView();
         // Check if the provided username and password match any records in the database
         User user = userRepository.findByUsernameAndPassword(username, password);
@@ -36,7 +39,8 @@ public class UserController {
             modelAndView.setViewName("redirect:/home");
         } else {
             // Add an error message to the model and redirect back to the login page
-            modelAndView.setViewName("redirect:/login?error=Invalid username or password");
+            modelAndView.setViewName("redirect:/login");
+            modelAndView.addObject("error", "Invalid username or password");
         }
         return modelAndView;
     }

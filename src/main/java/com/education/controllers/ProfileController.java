@@ -71,10 +71,10 @@ public class ProfileController {
         return "pastfeedback";
     }
 
-    @GetMapping("/providefeedback")
-    public String showFeedbackPage() {
-        return "providefeedback";
-    }
+    // @GetMapping("/providefeedback")
+    // public String showFeedbackPage() {
+    //     return "providefeedback";
+    // }
     
     @PostMapping("/submitfeedback")    
     public String provideFeedback(String message, HttpSession session) {
@@ -92,7 +92,7 @@ public class ProfileController {
         feedbackRepository.save(feedback);
 
         // Redirect to a confirmation page or wherever appropriate
-        return "redirect:/home";
+        return "redirect:/viewpastfeedback";
     }
     
     @GetMapping("/showprofile")
