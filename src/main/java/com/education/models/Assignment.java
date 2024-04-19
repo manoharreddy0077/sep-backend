@@ -8,6 +8,8 @@ import java.io.IOException;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.servlet.http.HttpSession;
+
 import java.util.Date;
 
 @Entity
@@ -78,12 +80,12 @@ public class Assignment {
         this.dueDate = dueDate;
     }
 
-    public void submitAssignment(String assignmentId, MultipartFile assignmentFile) {
+    public void submitAssignment(MultipartFile assignmentFile,String title, HttpSession session) {
         // Check if the assignment file is not empty
         if (!assignmentFile.isEmpty()) {
             try {
                 // Get the bytes from the uploaded file
-                // byte[] bytes = assignmentFile.getBytes();
+                byte[] bytes = assignmentFile.getBytes();
 
                 // Create directory if it does not exist
                 File dir = new File("assignments");
@@ -91,8 +93,14 @@ public class Assignment {
                     dir.mkdirs();
                 }
 
+                // Fetch the username from the HttpSession
+                String username = (String) session.getAttribute("username");
+
+                // Construct the file name with username and assignment title
+                String fileName = username + "_" + title + ".pdf";
+
                 // Create the file on server
-                File serverFile = new File(dir.getAbsolutePath() + File.separator + assignmentId + ".pdf");
+                File serverFile = new File(dir.getAbsolutePath() + File.separator + fileName);
                 // Save the uploaded file to the server
                 assignmentFile.transferTo(serverFile);
 

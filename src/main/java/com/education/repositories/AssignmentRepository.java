@@ -15,5 +15,7 @@ public interface AssignmentRepository   extends JpaRepository <Assignment, Strin
     // Retrieve all assignments
     List<Assignment> findAll();
 
+    // Assignment findAssignmentById(String assignmentId);
+
     // Add other custom methods as needed for your application
 }

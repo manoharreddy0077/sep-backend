@@ -1,7 +1,10 @@
 package com.education.controllers;
 
 import com.education.models.Assignment;
+import com.education.repositories.AssignmentRepository;
 import com.education.services.AssignmentService;
+
+import jakarta.servlet.http.HttpSession;
 
 // import ch.qos.logback.core.model.Model;
 import org.springframework.ui.Model;
@@ -23,6 +26,9 @@ public class AssignmentController {
     @Autowired
     private AssignmentService assignmentService;
 
+    @Autowired
+    private AssignmentRepository assignmentRepository;
+
     @GetMapping("/assignments")
     public String showAssignments(Model model) {
         List<Assignment> assignments = assignmentService.getAllAssignments();
@@ -33,11 +39,14 @@ public class AssignmentController {
     
     @PostMapping("/submitAssignment")
     public String submitAssignment(@RequestParam("assignmentId") String assignmentId,
-                                   @RequestParam("assignmentFile") MultipartFile assignmentFile) {
+                                   @RequestParam("assignmentFile") MultipartFile assignmentFile,HttpSession session) {
         // Logic to handle assignment submission
         // Instantiate Assignment object and call submitAssignment method
-        Assignment assignment = new Assignment();
-        assignment.submitAssignment(assignmentId, assignmentFile);
+        // Assignment assignment = new Assignment();
+        Assignment assignment = assignmentService.getAssignmentById(assignmentId);
+        
+        System.out.println(assignment.getTitle());
+        assignment.submitAssignment(assignmentFile, assignment.getTitle(),session);
 
         // Redirect to assignments page or wherever needed
         return "redirect:/assignments";

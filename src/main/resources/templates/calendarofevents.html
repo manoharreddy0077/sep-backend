@@ -4,25 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calendar</title>
-    <!-- Include any necessary CSS files -->
     <style>
         /* Define CSS styles for calendar */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e9f5fe; /* Light blue background */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh; /* Minimum viewport height */
+        }
+
+        h1 {
+            font-size: 38px;
+            color: #007bff; /* Blue color */
+            margin-bottom: 20px;
+        }
+
         .calendar {
             border-collapse: collapse;
-            width: 100%;
+            width: 90%;
+            background-color: #fff; /* White background */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
         }
+
         .calendar th, .calendar td {
             border: 1px solid black;
             text-align: center;
             padding: 10px;
         }
-        .has-event {
-            background-color: green; /* Background color for upcoming events */
+
+        .has-event, .past-event {
             cursor: pointer; /* Change cursor to pointer for clickable events */
         }
+
+        .has-event {
+            background-color: green; /* Background color for upcoming events */
+        }
+
         .past-event {
             background-color: orange; /* Background color for past events */
-            cursor: pointer; /* Change cursor to pointer for clickable events */
         }
     </style>
 </head>

@@ -24,26 +24,7 @@
         </div>
     </div>
 
-    <!-- Display Completed Assignments -->
-    <h2>Completed Assignments</h2>
-    <div th:each="assignment : ${completedAssignments}">
-        <div>
-            <h3 th:text="${assignment.title}"></h3>
-            <p th:text="${assignment.description}"></p>
-            <p>Due Date: <span th:text="${assignment.dueDate}"></span></p>
-            <!-- Add more details or actions as needed -->
-        </div>
-    </div>
-
-    <!-- Display Upcoming Assignments -->
-    <h2>Upcoming Assignments</h2>
-    <div th:each="assignment : ${upcomingAssignments}">
-        <div>
-            <h3 th:text="${assignment.title}"></h3>
-            <p th:text="${assignment.description}"></p>
-            <p>Due Date: <span th:text="${assignment.dueDate}"></span></p>
-            <!-- Add more details or actions as needed -->
-        </div>
+   
     </div>
 </body>
 </html>

@@ -4,8 +4,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Events</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e9f5fe; /* Light blue background */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh; /* Minimum viewport height */
+        }
+
+        h2 {
+            font-size: 38px;
+            color: #007bff; /* Blue color */
+            margin-bottom: 20px;
+            text-align: center; /* Center-align the text */
+            width: 90%; /* Limit the width to 90% */
+        }
+
+        table {
+            width: 90%;
+            border-collapse: collapse;
+            background-color: #fff; /* White background */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd; /* Light gray border */
+        }
+
+        th {
+            background-color: #f8f9fa; /* Light gray background for table header */
+            font-weight: bold;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f8f9fa; /* Light gray background for even rows */
+        }
+
+    </style>
 </head>
 <body>
+    
     <div class="container mt-4">
         <h2>Events</h2>
         <table class="table" id="eventsTable">
